@@ -21,8 +21,6 @@ public static class Json
 
     public static bool ToFile<T>(string path, T value)
     {
-        //if (!File.Exists(path)) return false;
-
         var json = JsonSerializer.Serialize(value, Options);
         File.WriteAllText(path, json);
 
