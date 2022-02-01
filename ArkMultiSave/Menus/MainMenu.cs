@@ -1,6 +1,4 @@
-﻿using ArkMultiSave.Printers;
-
-namespace ArkMultiSave.Menus;
+﻿namespace ArkMultiSave.Menus;
 
 public class MainMenu
 {
@@ -22,13 +20,13 @@ public class MainMenu
         _actions = new()
         {
             { "Load Profile", LoadProfile },
-            { "Add Map", AddMap },
-            { "Remove Map", RemoveMap },
-            { "Save To Profile", SaveToProfile },
-            { "Remove Profile", RemoveProfile },
-            { "New Profile", NewProfile },
             { "List Profiles", () => MainMenuPrint.Profiles(_profiles) },
             { "List Games", () => MainMenuPrint.GameSaves(_save.GetActiveGames()) },
+            { "Save To Profile", () => _save.SaveToProfile() },
+            { "Add Map", AddMap },
+            { "New Profile", NewProfile },
+            { "Remove Map", RemoveMap },
+            { "Remove Profile", RemoveProfile },
             { "Open Folder", () => Env.StartInExplorer(_config.SavedFolderPath) },
             { "Open Profiles", () => Env.StartInDefaultApp(Const.Profiles) },
         };
@@ -57,7 +55,7 @@ public class MainMenu
 
     private void NewProfile()
     {
-        var profile = ProfileFactory.Default();
+        var profile = Profile.CreateDefault();
         profile.SetNamePrompt(_profiles.Names());
         var addMap = Prompt.Confirm("Add a map (the island is added by default)? (y/n)");
         if (addMap) profile.AddMapPrompt();
@@ -115,6 +113,4 @@ public class MainMenu
         MainMenuPrint.FileErrors(_save.Message, _save.FilesFailed);
         _save.FilesFailed.Clear();
     }
-
-    private void SaveToProfile() => _save.SaveToProfile();
 }

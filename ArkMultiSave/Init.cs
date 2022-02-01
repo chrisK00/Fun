@@ -1,6 +1,4 @@
-﻿using ArkMultiSave.Printers;
-
-namespace ArkMultiSave;
+﻿namespace ArkMultiSave;
 
 public static class Init
 {
@@ -50,9 +48,7 @@ public static class Init
     public static Profile GetActiveProfile(ICollection<Profile> profiles)
     {
         var activeProfile = profiles.FirstOrDefault(p => p.IsActive)!;
-        if (activeProfile != null) return activeProfile;
-
-        return NoActiveProfile(profiles);
+        return activeProfile ?? NoActiveProfile(profiles);
     }
 
     private static Profile NoActiveProfile(ICollection<Profile> profiles)
@@ -69,7 +65,7 @@ public static class Init
         }
         else
         {
-            profile = ProfileFactory.Default();
+            profile = Profile.CreateDefault();
             profile.IsActive = true;
             profile.SetNamePrompt(profiles.Names());
             profiles.Add(profile);

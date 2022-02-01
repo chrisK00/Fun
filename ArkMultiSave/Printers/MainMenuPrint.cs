@@ -1,6 +1,4 @@
-﻿using ConsoleTables;
-
-namespace ArkMultiSave.Printers;
+﻿namespace ArkMultiSave.Printers;
 public static class MainMenuPrint
 {
     public static void Profiles(IEnumerable<Profile> profiles)

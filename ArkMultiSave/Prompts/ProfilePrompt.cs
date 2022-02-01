@@ -1,7 +1,6 @@
-﻿using ArkMultiSave.Printers;
+﻿namespace ArkMultiSave.Prompts;
 
-namespace ArkMultiSave.Factories;
-public static class ProfileFactory
+public static class ProfilePrompt
 {
     public static void SetNamePrompt(this Profile profile, IEnumerable<string> takenNames)
     {
@@ -30,13 +29,5 @@ public static class ProfileFactory
     {
         var map = Prompt.Select("Select map to remove", profile.GameFolders.WithoutSavedArksLocal());
         profile.GameFolders.Remove(map + Const.DefaultGameFolder);
-    }
-
-    public static Profile Default()
-    {
-        var profile = new Profile();
-        profile.GameFolders.Add(Const.DefaultGameFolder);
-
-        return profile;
     }
 }

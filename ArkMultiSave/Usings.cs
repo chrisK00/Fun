@@ -9,6 +9,8 @@ global using ArkMultiSave.Interfaces;
 global using ArkMultiSave.Models;
 global using ArkMultiSave.Factories;
 global using ArkMultiSave.Extensions;
+global using ArkMultiSave.Printers;
+global using ArkMultiSave.Prompts;
 
 global using Sharprompt;
-
+global using ConsoleTables;
