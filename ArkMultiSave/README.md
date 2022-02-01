@@ -1,4 +1,12 @@
-﻿## How to start
+﻿
+[![wtgif.gif](https://i.postimg.cc/dtqhB1sL/sf-UHAgoi-WT.gif)](https://postimg.cc/py6VVPnH)
+
+[![wtimg.png](https://i.postimg.cc/wTshC3KF/Windows-Terminal-J61-GEA9-CCK.png)](https://postimg.cc/WhTFrN1J)
+
+## Why?
+In Ark you can only have one game per map and there is no way to switch between different ones. That means you cannot have two saves that are on TheIsland, even if you just wanted to try something out. If you like to play alone in one world, with one of your friends in another and another world with another friend then you have to manually rename multiple folders everytime. I created this tool so that I can quickly switch between worlds/create new ones and I hope someone else also finds it usefull.
+
+## How to start
 1. You need to get the full folder path to where Ark stores all your saves which is usually: `C:\SteamLibrary\steamapps\common\ARK\ShooterGame\Saved`
 2. When you start the tool for the first time it will create a config file and profiles file inside of `%AppData%` in a folder called ArkMultiSave. Then it prompts you to enter the path mentioned above. You can always directly edit the config files otherwise and it's mentioned how below.
 3. After that you will enter a name for your first profile and it auto adds TheIsland to it.
