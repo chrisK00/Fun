@@ -1,4 +1,6 @@
 ﻿
+## V 1.0.0
+
 [![wtgif.gif](https://i.postimg.cc/dtqhB1sL/sf-UHAgoi-WT.gif)](https://postimg.cc/py6VVPnH)
 
 [![wtimg.png](https://i.postimg.cc/wTshC3KF/Windows-Terminal-J61-GEA9-CCK.png)](https://postimg.cc/WhTFrN1J)
