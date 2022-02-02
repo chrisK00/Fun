@@ -12,12 +12,9 @@ public class SaveService : ISaveService
 
     public IEnumerable<GameSave> GetSaves(string folderPath, string searchPattern)
     {
-        var saves = new List<GameSave>();
-
-        Directory.GetDirectories(folderPath, searchPattern)
-            .ForEach(f => saves.Add(new GameSave(Path.GetFileName(f), Directory.GetCreationTime(f), Directory.GetLastWriteTime(f))));
-
-        return saves;
+       return Directory.GetDirectories(folderPath, searchPattern)
+                       .Select(f => new GameSave(Path.GetFileName(f), Directory.GetCreationTime(f), Directory.GetLastWriteTime(f)))
+                       .ToList();
     }
 
     public bool Exists(string path) => Directory.Exists(path);
