@@ -14,7 +14,7 @@ public class SaveService : ISaveService
     {
        return Directory.GetDirectories(folderPath, searchPattern)
                        .Select(f => new GameSave(Path.GetFileName(f), Directory.GetCreationTime(f), Directory.GetLastWriteTime(f)))
-                       .ToList();
+                       .ToArray();
     }
 
     public bool Exists(string path) => Directory.Exists(path);
