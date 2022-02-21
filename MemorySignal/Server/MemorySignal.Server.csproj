@@ -18,12 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Client\MemorySignal.Client.csproj" />
     <ProjectReference Include="..\MemorySignal.Core\MemorySignal.Core.csproj" />
     <ProjectReference Include="..\Shared\MemorySignal.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 

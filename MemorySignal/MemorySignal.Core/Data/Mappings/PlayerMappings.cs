@@ -8,7 +8,7 @@ public static class PlayerMappings
         players.Select(p => p.ToResponse())
         .ToArray();
 
-    public static IEnumerable<string> Ids(this IEnumerable<Player> players, string exceptId = "") => 
+    public static IEnumerable<string> Ids(this IEnumerable<Player> players, string exceptId = "") =>
         players.Where(p => p.Id != exceptId)
         .Select(p => p.Id)
         .ToArray();

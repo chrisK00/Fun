@@ -28,6 +28,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
+    app.UseBlazorFrameworkFiles();
 }
 else
 {
@@ -37,10 +38,7 @@ else
 }
 
 app.UseHttpsRedirection();
-
-app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
-
 app.UseRouting();
 
 app.MapRazorPages();

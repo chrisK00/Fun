@@ -9,7 +9,7 @@ public class CardCollectionQueries : ICardCollectionQueries
         _context = context;
     }
 
-    public async Task<IEnumerable<CardCollectionResponse>> GetAllForList()
+    public async Task<IEnumerable<CardCollectionResponse>> GetAll()
     {
         return await _context.CardCollections.AsNoTracking()
             .Select(cc => cc.ToResponse())
