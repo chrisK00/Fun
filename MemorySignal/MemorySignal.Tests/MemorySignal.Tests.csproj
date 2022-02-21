@@ -20,4 +20,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MemorySignal.Core\MemorySignal.Core.csproj" />
+    <ProjectReference Include="..\Server\MemorySignal.Server.csproj" />
+    <ProjectReference Include="..\Shared\MemorySignal.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
