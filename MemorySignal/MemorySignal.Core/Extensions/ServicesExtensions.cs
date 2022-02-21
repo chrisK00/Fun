@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MemorySignal.Core.Extensions;
@@ -14,7 +13,11 @@ public static class ServicesExtensions
         scan.FromCallingAssembly()
             .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Queries")))
             .AsImplementedInterfaces()
-            .WithScopedLifetime());
+            .WithScopedLifetime()
+
+            .AddClasses(classes => classes.Where(type => type.Name.EndsWith("GameManager")))
+            .AsImplementedInterfaces()
+            .WithSingletonLifetime());
     }
 
     private static string ParseHerokuConnectionString(string connectionString)

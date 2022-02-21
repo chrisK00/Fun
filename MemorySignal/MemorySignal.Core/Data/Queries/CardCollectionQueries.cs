@@ -9,18 +9,15 @@ public class CardCollectionQueries : ICardCollectionQueries
         _context = context;
     }
 
-    public IEnumerable<CardCollectionResponse> GetAll()
+    public IEnumerable<CardCollectionResponse> GetAllForList()
     {
-        return _context.CardCollections
+        return _context.CardCollections.AsNoTracking()
             .ToResponses();
     }
 
-    public IEnumerable<CardResponse> GetCards(int collectionId)
+    public IEnumerable<Card> GetCards(int collectionId)
     {
-        return _context.CardCollections
-             .Where(cc => cc.Id == collectionId)
-             .Select(cc => cc.Cards)
-             .FirstOrDefault()
-             .ToResponses();
+        return _context.CardCollections.AsNoTracking()
+            .FirstOrDefault()?.Cards;
     }
 }

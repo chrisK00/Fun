@@ -11,3 +11,5 @@ global using MemorySignal.Core.Extensions;
 global using MemorySignal.Core.Interfaces;
 
 global using MemorySignal.Shared.Responses;
+
+global using Microsoft.EntityFrameworkCore;

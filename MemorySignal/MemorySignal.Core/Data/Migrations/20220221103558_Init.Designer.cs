@@ -8,10 +8,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace MemorySignal.Core.Migrations
+namespace DataMigrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220221101903_Init")]
+    [Migration("20220221103558_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

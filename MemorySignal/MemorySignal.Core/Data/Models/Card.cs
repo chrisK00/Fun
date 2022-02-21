@@ -13,4 +13,6 @@ public class Card
     public string ImageUrl { get; private set; }
     public string ApiId { get; private set; }
     public IEnumerable<CardCollection> CardCollections { get; private set; }
+
+    public Card Copy() => new(Id, ImageUrl, ApiId);
 }

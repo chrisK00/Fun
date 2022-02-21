@@ -2,6 +2,6 @@
 
 public interface ICardCollectionQueries
 {
-    IEnumerable<CardCollectionResponse> GetAll();
-    IEnumerable<CardResponse> GetCards(int collectionId);
+    IEnumerable<CardCollectionResponse> GetAllForList();
+    IEnumerable<Card> GetCards(int collectionId);
 }
