@@ -23,6 +23,7 @@ builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(Log.Logger);
 
 builder.Services.AddCoreServices(builder.Configuration, builder.Environment.IsProduction());
+Log.Logger.Information(builder.Environment.ContentRootPath);
 
 var app = builder.Build();
 Seed(app.Services);
@@ -33,6 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseWebAssemblyDebugging();
     app.UseBlazorFrameworkFiles();
     app.UseStaticFiles();
+    app.MapFallbackToFile("index.html");
 }
 else
 {
