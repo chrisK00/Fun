@@ -29,12 +29,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        // TODO: remove after deploy 
-        // *
-        Console.WriteLine(Client.BaseAddress.AbsoluteUri);
-        Console.WriteLine(Nav.Uri);
-        // *
-
         _cardCollections = await Client.GetFromJsonAsync<IEnumerable<CardCollectionResponse>>("cardcollections");
     }
 
