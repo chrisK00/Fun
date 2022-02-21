@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Client\MemorySignal.Client.csproj" Condition="$(IsPublishable) == 'false'" />
     <ProjectReference Include="..\MemorySignal.Core\MemorySignal.Core.csproj" />
     <ProjectReference Include="..\Shared\MemorySignal.Shared.csproj" />
   </ItemGroup>

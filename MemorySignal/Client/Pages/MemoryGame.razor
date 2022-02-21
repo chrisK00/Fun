@@ -70,12 +70,12 @@ public string PlayerName { get; set; }
 [Parameter] public int CardCollectionId { get; set; }
 
 private string _winMessage;
-private ICollection<CardResponse> _cardsFlipped = new List<CardResponse>();
+private ICollection<MemoryCardResponse> _cardsFlipped = new List<MemoryCardResponse>();
 private bool _flipping;
 private HubConnection _connection;
 private PlayerResponse _playersTurn;
 private ICollection<PlayerResponse> _players = new List<PlayerResponse>();
-private IEnumerable<CardResponse> _cards { get; set; } = new List<CardResponse>();
+private IEnumerable<MemoryCardResponse> _cards { get; set; } = new List<MemoryCardResponse>();
 
 public void Reset()
 {
@@ -140,7 +140,7 @@ protected override async Task OnParametersSetAsync()
         StateHasChanged();
     });
 
-    _connection.On<IEnumerable<CardResponse>, PlayerResponse>(nameof(IMemoryGameClient.Start), (cards, player) =>
+    _connection.On<IEnumerable<MemoryCardResponse>, PlayerResponse>(nameof(IMemoryGameClient.Start), (cards, player) =>
     {
         if (_playersTurn != null) Reset();
 
@@ -164,7 +164,7 @@ protected override async Task OnParametersSetAsync()
     if (!string.IsNullOrWhiteSpace(PlayerName)) await JoinGame();
 }
 
-private async Task Flip(CardResponse card)
+private async Task Flip(MemoryCardResponse card)
 {
     Console.WriteLine($"Clicked {card.TempId}");
     if (_flipping || _playersTurn.Name != PlayerName || card.IsFlipped || _cardsFlipped.Any(c => c.TempId == card.TempId))

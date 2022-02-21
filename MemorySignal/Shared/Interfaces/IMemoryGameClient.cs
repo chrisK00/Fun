@@ -19,7 +19,7 @@ public interface IMemoryGameClient
     /// <param name="cards"></param>
     /// <param name="playersTurn"></param>
     /// <returns>The cards for the game and whoose turn it is</returns>
-    Task Start(IEnumerable<CardResponse> cards, PlayerResponse playersTurn);
+    Task Start(IEnumerable<MemoryCardResponse> cards, PlayerResponse playersTurn);
 
     Task PlayerJoined(PlayerResponse player);
     Task PlayerLeft(string playerName);

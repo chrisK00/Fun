@@ -1,8 +1,8 @@
 ﻿namespace MemorySignal.Shared.Responses;
 
-public class CardResponse
+public class MemoryCardResponse
 {
-    public CardResponse(string tempId, string imageUrl)
+    public MemoryCardResponse(string tempId, string imageUrl)
     {
         TempId = tempId;
         ImageUrl = imageUrl;
