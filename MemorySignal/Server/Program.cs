@@ -23,7 +23,6 @@ builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(Log.Logger);
 
 builder.Services.AddCoreServices(builder.Configuration, builder.Environment.IsProduction());
-Log.Logger.Information(builder.Environment.ContentRootPath);
 
 var app = builder.Build();
 Seed(app.Services);
@@ -41,6 +40,7 @@ else
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+    app.MapFallback(async req => await req.Response.WriteAsJsonAsync("This link appears to be broken or the site is down for maintenance"));
 }
 
 app.UseHttpsRedirection();
