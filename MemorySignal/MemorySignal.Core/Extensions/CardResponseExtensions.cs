@@ -2,5 +2,5 @@
 
 public static class CardResponseExtensions
 {
-    public static CardResponse Copy(this CardResponse card) => new CardResponse(card.Id, card.ImageUrl);
+    public static CardResponse Copy(this CardResponse card) => new(card.Id, card.ImageUrl);
 }

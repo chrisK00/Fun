@@ -37,7 +37,8 @@ public class MemoryGameHub : Hub<IMemoryGameClient>, IMemoryGameHub
 
         if (game == null)
         {
-            game = new MemoryGame(gameId, _cardCollectionQueries.GetCards(cardCollectionId).Duplicate());
+            var cards = await _cardCollectionQueries.GetCards(cardCollectionId);
+            game = new MemoryGame(gameId, Guard.Empty(cards, cardCollectionId).Duplicate());
             _gameManager.Add(game);
         }
 
