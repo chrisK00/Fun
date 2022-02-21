@@ -9,7 +9,8 @@ public class Card
         ApiId = apiId;
     }
 
-    public int Id { get; }
-    public string ImageUrl { get; }
-    public string ApiId { get; }
+    public int Id { get; private set; }
+    public string ImageUrl { get; private set; }
+    public string ApiId { get; private set; }
+    public IEnumerable<CardCollection> CardCollections { get; private set; }
 }

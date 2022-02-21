@@ -4,6 +4,7 @@ global using System.Linq;
 global using System.Text;
 global using System.Threading.Tasks;
 
+global using MemorySignal.Core.Data;
 global using MemorySignal.Core.Data.Models;
 global using MemorySignal.Core.Data.Mappings;
 global using MemorySignal.Core.Extensions;

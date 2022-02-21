@@ -9,7 +9,9 @@ public class CardCollection
         Cards = cards;
     }
 
-    public int Id { get; }
+    private CardCollection() { }
+
+    public int Id { get; private set; }
     public string Name { get; set; }
-    public ICollection<Card> Cards { get; }
+    public ICollection<Card> Cards { get; private set; }
 }
