@@ -4,7 +4,7 @@ namespace MemorySignal.Shared.Interfaces;
 
 public interface IMemoryGameHub
 {
-    const string Uri = "/memoryGameHub";
+    const string Uri = "memoryGameHub";
 
     Task Flip(string gameId, string cardId);
 

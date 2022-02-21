@@ -53,7 +53,7 @@ if (app.Environment.IsProduction())
 
 app.MapRazorPages();
 app.MapControllers();
-app.MapHub<MemoryGameHub>(IMemoryGameHub.Uri);
+app.MapHub<MemoryGameHub>("/" + IMemoryGameHub.Uri);
 
 app.Run();
 
