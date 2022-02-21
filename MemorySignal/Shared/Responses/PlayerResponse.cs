@@ -1,5 +1,10 @@
 ﻿namespace MemorySignal.Shared.Responses;
 public class PlayerResponse
 {
-    public string Name { get; set; }
+    public PlayerResponse(string name)
+    {
+        Name = name;
+    }
+
+    public string Name { get; }
 }
