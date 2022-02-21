@@ -37,15 +37,19 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseCors(opt => opt.WithOrigins(app.Configuration["ClientUrl"]).AllowAnyHeader().AllowAnyMethod());
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-    app.MapFallback(async req => await req.Response.WriteAsJsonAsync("This link appears to be broken or the site is down for maintenance"));
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
+
+if (app.Environment.IsProduction())
+{
+    app.UseCors(builder => builder.WithOrigins(app.Configuration["ClientUrl"]).AllowAnyHeader().AllowAnyMethod());
+    app.MapFallback(async req => await req.Response.WriteAsJsonAsync("This link appears to be broken or the site is down for maintenance"));
+}
 
 app.MapRazorPages();
 app.MapControllers();
