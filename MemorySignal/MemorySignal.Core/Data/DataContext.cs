@@ -21,7 +21,7 @@ public class DataContext : DbContext
             .Ignore(x => x.TempId);
 
         builder.Entity<Card>()
-            .HasIndex(x => x.ApiId).IsUnique(true);
+            .HasIndex(x => x.ApiId);
 
         builder.Entity<CardCollection>()
             .Property(x => x.Name).HasMaxLength(128);
