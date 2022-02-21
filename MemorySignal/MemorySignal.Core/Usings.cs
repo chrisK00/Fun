@@ -9,6 +9,7 @@ global using MemorySignal.Core.Data.Models;
 global using MemorySignal.Core.Data.Mappings;
 global using MemorySignal.Core.Extensions;
 global using MemorySignal.Core.Interfaces;
+global using MemorySignal.Core.Helpers;
 
 global using MemorySignal.Shared.Responses;
 

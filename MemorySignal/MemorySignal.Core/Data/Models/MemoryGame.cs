@@ -4,10 +4,10 @@ public class MemoryGame
 {
     private readonly List<Player> _players = new();
 
-    public MemoryGame(IEnumerable<Card> cards, string id)
+    public MemoryGame(string id, IEnumerable<Card> cards)
     {
-        Cards = cards;
         Id = id;
+        Cards = cards;
     }
 
     public IReadOnlyList<Player> Players => _players;
@@ -17,11 +17,14 @@ public class MemoryGame
     public Card LastFlippedCard { get; private set; }
 
     /// <summary>
-    /// Starts or restarts the game
+    /// Starts or restarts the game and sets <see cref="PlayersTurn"/> to <paramref name="playerId"/>
     /// </summary>
-    public void Start()
+    /// <param name="playerId">Player trying to start the game</param>
+    public void Start(string playerId)
     {
-        PlayersTurn = Players[0];
+        var player = Players.FirstOrDefault(p => p.Id == playerId);
+        if (player == null) throw new InvalidOperationException("You are not part of this game");
+        PlayersTurn = player;
         LastFlippedCard = null;
         Cards = Cards.Randomize();
     }
@@ -30,9 +33,12 @@ public class MemoryGame
     /// Flips the given card and compares it to the <see cref="LastFlippedCard"/> if there is one
     /// </summary>
     /// <param name="cardId"></param>
+    /// <param name="playerId">Player trying to flip</param>
     /// <returns>If <see cref="LastFlippedCard"/> matches <paramref name="cardId"/></returns>
-    public bool Flip(int cardId)
+    public bool Flip(int cardId, string playerId)
     {
+        if (PlayersTurn.Id != playerId) throw new InvalidOperationException("It is not your turn");
+
         var card = Cards.First(c => c.Id == cardId);
         // first card to flip
         if (LastFlippedCard is null)
