@@ -32,6 +32,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
     app.UseBlazorFrameworkFiles();
+    app.UseStaticFiles();
 }
 else
 {
@@ -41,13 +42,11 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 app.UseRouting();
 
 app.MapRazorPages();
 app.MapControllers();
 app.MapHub<MemoryGameHub>(IMemoryGameHub.Uri);
-app.MapFallbackToFile("index.html");
 
 app.Run();
 
