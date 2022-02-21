@@ -2,13 +2,13 @@
 
 public class CardResponse
 {
-    public CardResponse(int id, string imageUrl)
+    public CardResponse(string tempId, string imageUrl)
     {
-        Id = id;
+        TempId = tempId;
         ImageUrl = imageUrl;
     }
 
-    public int Id { get; }
+    public string TempId { get; }
     public string ImageUrl { get; }
     public bool IsFlipped { get; set; }
 }

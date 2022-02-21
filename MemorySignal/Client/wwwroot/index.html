@@ -20,6 +20,19 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        function select(elementId) {
+            const element = document.getElementById(elementId);
+            element.select();
+        }
+
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            element.select();
+            document.execCommand('copy');
+            element.blur();
+        }
+    </script>
 </body>
 
 </html>

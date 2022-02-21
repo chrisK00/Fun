@@ -11,7 +11,7 @@ public interface IMemoryGameClient
     /// <param name="addPoint">If the player got a point</param>
     Task Turn(string playerName, bool addPoint);
 
-    Task Flipping(int cardId);
+    Task Flipping(string cardId);
 
     /// <summary>
     /// The game has started and both the cards and players turn are returned

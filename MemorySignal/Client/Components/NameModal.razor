@@ -1,0 +1,37 @@
+﻿@inject IJSRuntime Js
+
+<div class="modal fade mt-5 @_modalClass" tabindex="-1" role="dialog" style="display:@_modalDisplay;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form class="form-group" @onsubmit="async() => await SubmitNameAsync(PlayerName)">
+                    <label for="@PlayerName">Name</label>
+                    <input id="name-input" autocomplete="on" class="form-control" type="text" @bind-value="PlayerName" min="3" />
+                    <button type="submit" class="btn btn-primary mt-1" data-dismiss="modal">Play</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code{
+    [Parameter] public EventCallback<string> OnNameSubmit { get; set; }
+    public string PlayerName { get; set; } = Guid.NewGuid().ToString()[..4];
+    private string _modalClass = "show";
+    private string _modalDisplay = "block";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Js.InvokeVoidAsync("select", "name-input");
+        }
+    }
+
+    public async Task SubmitNameAsync(string name)
+    {
+        _modalClass = "none";
+        _modalDisplay = "block;";
+        await OnNameSubmit.InvokeAsync(PlayerName);
+    }
+}

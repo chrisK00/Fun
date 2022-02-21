@@ -12,6 +12,7 @@ public class CardCollectionQueries : ICardCollectionQueries
     public async Task<IEnumerable<CardCollectionResponse>> GetAll()
     {
         return await _context.CardCollections.AsNoTracking()
+            .Include(cc => cc.Cards)
             .Select(cc => cc.ToResponse())
             .ToArrayAsync();
     }

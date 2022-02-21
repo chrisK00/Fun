@@ -1,5 +1,40 @@
 ﻿@page "/"
+@page "/home"
+@inject NavigationManager Nav
+@inject HttpClient Client
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="container">
+    <div class="row">
+        @if (_cardCollections != null)
+        {
+            @foreach (var c in _cardCollections)
+            {
+                <div class="card bg-dark text-light col-md-3 col-5 m-2">
+                    <img class="card-img" src="@c.FirstCardImageUrl" alt="Card Image">
+                    <div class="card-body">
+                        <h5>@c.Name</h5>
+                        <p>@c.CardsCount cards</p>
+                        <button class="btn btn-primary" @onclick="() => PlayGame(c.Id)">Play</button>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@code{
+    private IEnumerable<CardCollectionResponse> _cardCollections;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _cardCollections = await Client.GetFromJsonAsync<IEnumerable<CardCollectionResponse>>("cardcollections");
+    }
+
+    public void PlayGame(int cardsId)
+    {
+        var gameId = Guid.NewGuid().ToString()[..8];
+        Nav.NavigateTo($"/memory-game/{gameId}/{cardsId}");
+    }
+}

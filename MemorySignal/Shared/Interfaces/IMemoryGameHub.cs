@@ -6,7 +6,7 @@ public interface IMemoryGameHub
 {
     const string Uri = "/memoryGameHub";
 
-    Task Flip(string gameId, int cardId);
+    Task Flip(string gameId, string cardId);
 
     Task Start(string gameId);
 

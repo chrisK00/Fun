@@ -35,11 +35,11 @@ public class MemoryGame
     /// <param name="cardId"></param>
     /// <param name="playerId">Player trying to flip</param>
     /// <returns>If <see cref="LastFlippedCard"/> matches <paramref name="cardId"/></returns>
-    public bool Flip(int cardId, string playerId)
+    public bool Flip(string cardId, string playerId)
     {
         if (PlayersTurn.Id != playerId) throw new InvalidOperationException("It is not your turn");
 
-        var card = Cards.First(c => c.Id == cardId);
+        var card = Cards.First(c => c.TempId == cardId);
         // first card to flip
         if (LastFlippedCard is null)
         {
@@ -68,8 +68,10 @@ public class MemoryGame
     public void Join(Player player)
     {
         CheckIfGameHasStarted();
+
         lock (_players)
         {
+            if (_players.Any(p => p.Name == player.Name)) throw new ArgumentException($"Name {player.Name} is taken");
             _players.Add(player);
         }
     }

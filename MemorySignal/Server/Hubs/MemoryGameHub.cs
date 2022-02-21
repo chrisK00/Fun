@@ -18,7 +18,7 @@ public class MemoryGameHub : Hub<IMemoryGameClient>, IMemoryGameHub
 
     private string _connectionId => Context.ConnectionId;
 
-    public async Task Flip(string gameId, int cardId)
+    public async Task Flip(string gameId, string cardId)
     {
         var game = Guard.Null(_gameManager.Get(gameId), gameId, "memory game");
         var connectionIds = game.Players.Ids();

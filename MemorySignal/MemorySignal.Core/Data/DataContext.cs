@@ -18,6 +18,9 @@ public class DataContext : DbContext
             .Property(x => x.ImageUrl).IsUnicode(false);
 
         builder.Entity<Card>()
+            .Ignore(x => x.TempId);
+
+        builder.Entity<Card>()
             .HasIndex(x => x.ApiId).IsUnique(true);
 
         builder.Entity<CardCollection>()

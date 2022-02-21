@@ -9,9 +9,10 @@ public class Card
     }
 
     public int Id { get; init; }
+    public string TempId { get; } = Guid.NewGuid().ToString();
     public string ImageUrl { get; private set; }
     public string ApiId { get; private set; }
     public IEnumerable<CardCollection> CardCollections { get; private set; }
 
-    public Card Copy() => new(ImageUrl, ApiId) { Id = Id};
+    public Card Copy() => new(ImageUrl, ApiId) { Id = Id };
 }

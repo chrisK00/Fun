@@ -7,4 +7,5 @@ public class PlayerResponse
     }
 
     public string Name { get; }
+    public int Points { get; set; }
 }
