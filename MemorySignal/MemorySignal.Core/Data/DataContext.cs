@@ -17,6 +17,9 @@ public class DataContext : DbContext
         builder.Entity<Card>()
             .Property(x => x.ImageUrl).IsUnicode(false);
 
+        builder.Entity<Card>()
+            .HasIndex(x => x.ApiId).IsUnique(true);
+
         builder.Entity<CardCollection>()
             .Property(x => x.Name).HasMaxLength(128);
 

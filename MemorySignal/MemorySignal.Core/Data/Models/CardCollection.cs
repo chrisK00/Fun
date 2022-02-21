@@ -2,9 +2,8 @@
 
 public class CardCollection
 {
-    public CardCollection(int id, string name, ICollection<Card> cards)
+    public CardCollection(string name, ICollection<Card> cards)
     {
-        Id = id;
         Name = name;
         Cards = cards;
     }
