@@ -32,7 +32,7 @@
             <div class="display-6 text-success mt-2">@_winMessage</div>
         }
 
-        <div class="col-md-8">
+        <div class="col-xl-9">
             <div class="row">
                 @foreach (var card in _cards)
                 {
@@ -44,26 +44,15 @@
         </div>
     }
 
-    <div class="col-md-4 mt-md-0 mt-2">
+    <div class="col-xl-3 mt-xl-0 mt-1">
         <ul class="list-group">
             @foreach (var player in _players)
             {
-                <li class="list-group-item">@player.Name - <span class="primary">@player.Points points</span></li>
+                <li class="list-group-item bg-secondary text-light">@player.Name - <span class="primary">@player.Points points</span></li>
             }
         </ul>
     </div>
 </div>
-
-<style>
-    .memory-card {
-        width: 100px;
-        height: 100px;
-        cursor: pointer;
-        transition: transform .5s;
-        padding: 0rem;
-        margin: 0.2rem 0.1rem;
-    }
-</style>
 
 @code {
     public string PlayerName { get; set; }
@@ -199,3 +188,53 @@
         if (_connection is not null) await _connection.DisposeAsync();
     }
 }
+
+<style>
+    .memory-card {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        transition: transform .5s;
+        padding: 0rem;
+        margin: 0.2rem 0.1rem;
+    }
+
+    .list-group-item {
+        font-size: 1.25rem;
+    }
+
+    @@media (min-width:375px) {
+        .memory-card {
+            width: 110px;
+            height: 110px;
+        }
+    }
+
+    @@media (min-width:425px) {
+        .memory-card {
+            width: 130px;
+            height: 130px;
+        }
+    }
+
+    @@media (min-width:768px) {
+        .memory-card {
+            width: 150px;
+            height: 150px;
+        }
+    }
+
+    @@media (min-width:1024px) {
+        .memory-card {
+            width: 180px;
+            height: 180px;
+        }
+    }
+
+    @@media (min-width:1400px) {
+        .memory-card {
+            width: 200px;
+            height: 200px;
+        }
+    }
+</style>

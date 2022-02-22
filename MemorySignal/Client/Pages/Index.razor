@@ -29,7 +29,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _cardCollections = await Client.GetFromJsonAsync<IEnumerable<CardCollectionResponse>>("cardcollections");
+        _cardCollections = await Client.GetFromJsonAsync<IEnumerable<CardCollectionResponse>>("CardCollections");
     }
 
     public void PlayGame(int cardsId)

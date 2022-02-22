@@ -63,6 +63,7 @@ static void Seed(IServiceProvider sp)
 {
     using var scope = sp.CreateScope();
     using var context = scope.ServiceProvider.GetRequiredService<DataContext>();
+    context.Database.EnsureDeleted();
     context.Database.Migrate();
     if (context.CardCollections.Any()) return;
 
