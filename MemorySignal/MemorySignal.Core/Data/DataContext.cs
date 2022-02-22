@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace MemorySignal.Core.Data;
+﻿namespace MemorySignal.Core.Data;
 
 public class DataContext : DbContext
 {
@@ -12,20 +10,25 @@ public class DataContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<Card>().ToTable("Cards");
+        builder.Entity<Card>()
+            .ToTable("Cards");
 
         builder.Entity<Card>()
-            .Property(x => x.ImageUrl).IsUnicode(false);
+            .Property(x => x.ImageUrl).IsUnicode(false).IsRequired();
 
         builder.Entity<Card>()
             .Ignore(x => x.TempId);
 
         builder.Entity<Card>()
+            .Property(x => x.ApiId).IsRequired();
+
+        builder.Entity<Card>()
             .HasIndex(x => x.ApiId);
 
         builder.Entity<CardCollection>()
-            .Property(x => x.Name).HasMaxLength(128);
+            .Property(x => x.Name).HasMaxLength(128).IsRequired();
 
-        builder.Entity<CardCollection>().HasIndex(x => x.Name);
+        builder.Entity<CardCollection>()
+            .HasIndex(x => x.Name);
     }
 }
