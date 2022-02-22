@@ -49,7 +49,7 @@ public class AddCardCollectionAction : ActionBase<AddCardCollectionRequest, Card
         {
             File = new FileDescription(fileName, stream),
             Folder = Const.CardImagesFolderName,
-            Transformation = new Transformation().Height(640).Width(427)
+            Transformation = new Transformation().Width(640).Height(427).Crop("limit")
         };
     }
 
