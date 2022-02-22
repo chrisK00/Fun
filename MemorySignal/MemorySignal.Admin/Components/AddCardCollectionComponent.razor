@@ -21,7 +21,7 @@
 
         <div class="form-group mt-2">
             <button class="btn btn-lg btn-success" type="submit">Submit</button>
-            <button class="btn btn-danger" type="reset">Reset</button>
+            <button class="btn btn-danger" @onclick="Reset">Reset</button>
         </div>
     </EditForm>
 </div>
@@ -41,6 +41,7 @@
         }
 
         using var content = new MultipartFormDataContent();
+        content.Add(new StringContent(_model.Name), nameof(AddCardCollectionRequest.Name));
         var streams = new List<Stream>();
 
         try
@@ -51,14 +52,31 @@
                 streams.Add(stream);
                 var fileContent = new StreamContent(stream);
                 fileContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
-                content.Add(fileContent, "Images", file.Name);
+                content.Add(fileContent, nameof(AddCardCollectionRequest.Images), file.Name);
             }
 
-            var response = await Client.PostAsync("cardcollections", content);
+            await SendRequestAsync(content);
         }
         finally
         {
             await Task.WhenAll(streams.Select(s => s.DisposeAsync().AsTask()).ToArray());
         }
+
+    }
+
+    private async Task SendRequestAsync(MultipartFormDataContent formData)
+    {
+        var response = await Client.PostAsync("cardcollections", formData);
+
+        var cardCollection = await response.Content.ReadFromJsonAsync<CardCollectionResponse>();
+        Reset();
+        await OnAdd.InvokeAsync(cardCollection);
+    }
+
+    private void Reset()
+    {
+        _model = new();
+        _files = new List<IBrowserFile>();
+        _message = "";
     }
 }

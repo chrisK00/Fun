@@ -13,6 +13,34 @@
     <AddCardCollectionComponent OnAdd="CollectionAdded" />
 }
 
+<div class="row m-2">
+    @foreach (var collection in _cardCollections)
+    {
+        <div class="col-sm-5 mt-3">
+            <div class="card bg-dark text-light">
+                <div class="row">
+                    <div class="col-8">
+                        <img class="card-img" src="@collection.FirstCardImageUrl" />
+                        <div class="card-body">
+                            <h5 class="card-title">@collection.Name</h5>
+                            <p class="card-text">Cards: @collection.CardsCount</p>
+                        </div>
+                    </div>
+                    <div class="card-footer col-4">
+                        <button class="btn btn-lg btn-danger">X</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .card-img {
+        max-width: 300px;
+    }
+</style>
+
 @code{
     private string _message = "";
     private bool _showAddCardCollection = true;
@@ -21,6 +49,7 @@
     public async Task CollectionAdded(CardCollectionResponse collection)
     {
         _cardCollections.Add(collection);
+        _showAddCardCollection = false;
         await PushMessage($"created {collection.Name}");
     }
 
