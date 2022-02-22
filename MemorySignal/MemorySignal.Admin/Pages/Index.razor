@@ -15,7 +15,7 @@
 
 @code{
     private string _message = "";
-    private bool _showAddCardCollection;
+    private bool _showAddCardCollection = true;
     private List<CardCollectionResponse> _cardCollections = new();
 
     public async Task CollectionAdded(CardCollectionResponse collection)
