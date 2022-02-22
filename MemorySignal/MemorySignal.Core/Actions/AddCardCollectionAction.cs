@@ -48,8 +48,7 @@ public class AddCardCollectionAction : ActionBase<AddCardCollectionRequest, Card
         return new ImageUploadParams
         {
             File = new FileDescription(fileName, stream),
-            Folder = Const.CardImagesFolderName,
-            Transformation = new Transformation().Height(100).Width(100)
+            Folder = Const.CardImagesFolderName
         };
     }
 
