@@ -1,4 +1,5 @@
 using MemorySignal.Core.Data;
+using MemorySignal.Server.Filters;
 using MemorySignal.Server.Hubs;
 using MemorySignal.Shared.Interfaces;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -22,6 +23,7 @@ builder.Services.AddResponseCompression(opt => opt.MimeTypes = ResponseCompressi
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(Log.Logger);
 
+builder.Services.AddScoped<TokenFilter>();
 builder.Services.AddCoreServices(builder.Configuration, builder.Environment.IsProduction());
 
 var app = builder.Build();

@@ -10,7 +10,6 @@ public static class ServicesExtensions
         var connectionString = production ? ParseHerokuConnectionString(config["DATABASE_URL"]) : config["DefaultConnection"];
         services.AddDbContext<DataContext>(opt => opt.UseNpgsql(connectionString, npgsqlOpt => npgsqlOpt.EnableRetryOnFailure()));
         services.Configure<ImageApiOptions>(config.GetSection(nameof(ImageApiOptions)));
-
         services.AddAutoScanning();
     }
 

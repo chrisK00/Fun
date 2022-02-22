@@ -16,7 +16,7 @@ public class ImageManager : IImageManager
 
     public async Task<ImageUploadResult> UploadAsync(ImageUploadParams param)
     {
-        var account = new Account { ApiSecret = _apiOptions.Secret, ApiKey = _apiOptions.Key, Cloud = _apiOptions.CloudName };
+        var account = new Account(_apiOptions.CloudName, _apiOptions.Key, _apiOptions.Secret);
         var client = new Cloudinary(account);
         return await client.UploadAsync(param);
     }
