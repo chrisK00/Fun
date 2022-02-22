@@ -1,0 +1,16 @@
+﻿@*@inject action handler*@ 
+
+<EditForm Model="_model" OnValidSubmit="Submit">
+
+</EditForm>
+
+
+@code{
+    [Parameter] public EventCallback<CardCollectionResponse> OnAdd { get; set; }
+    private AddCardCollectionRequest _model;
+
+    private async Task Submit()
+    {
+
+    }
+}
