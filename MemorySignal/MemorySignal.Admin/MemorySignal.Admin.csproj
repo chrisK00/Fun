@@ -15,9 +15,4 @@
     <Folder Include="Components\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\MemorySignal.Core\MemorySignal.Core.csproj" />
-    <ProjectReference Include="..\..\Shared\MemorySignal.Shared.csproj" />
-  </ItemGroup>
-
 </Project>

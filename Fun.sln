@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemorySignal.Core", "Memory
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemorySignal.Tests", "MemorySignal\MemorySignal.Tests\MemorySignal.Tests.csproj", "{243FE9BC-E114-494A-83BA-F935E51E3BE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemorySignal.Admin", "MemorySignal\MemorySignal.Admin\MemorySignal.Admin\MemorySignal.Admin.csproj", "{EA2FBB24-31DB-4FA8-B5D0-9848E0373945}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemorySignal.Admin", "MemorySignal\MemorySignal.Admin\MemorySignal.Admin.csproj", "{E8284A56-122A-4308-9550-E6FC400A255B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +49,10 @@ Global
 		{243FE9BC-E114-494A-83BA-F935E51E3BE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{243FE9BC-E114-494A-83BA-F935E51E3BE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{243FE9BC-E114-494A-83BA-F935E51E3BE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EA2FBB24-31DB-4FA8-B5D0-9848E0373945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA2FBB24-31DB-4FA8-B5D0-9848E0373945}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA2FBB24-31DB-4FA8-B5D0-9848E0373945}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA2FBB24-31DB-4FA8-B5D0-9848E0373945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8284A56-122A-4308-9550-E6FC400A255B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8284A56-122A-4308-9550-E6FC400A255B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8284A56-122A-4308-9550-E6FC400A255B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8284A56-122A-4308-9550-E6FC400A255B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,7 +63,7 @@ Global
 		{D52DB2EE-03B0-4E7D-8AC4-9F88DCC658E9} = {D89C07FA-5E53-419B-848F-90DAE2F169EF}
 		{53868115-A8CF-4306-8A04-6C57BA93E1A5} = {D89C07FA-5E53-419B-848F-90DAE2F169EF}
 		{243FE9BC-E114-494A-83BA-F935E51E3BE2} = {D89C07FA-5E53-419B-848F-90DAE2F169EF}
-		{EA2FBB24-31DB-4FA8-B5D0-9848E0373945} = {D89C07FA-5E53-419B-848F-90DAE2F169EF}
+		{E8284A56-122A-4308-9550-E6FC400A255B} = {D89C07FA-5E53-419B-848F-90DAE2F169EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DE2C6931-AE47-4769-B6F6-93060173A1DE}
