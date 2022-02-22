@@ -7,17 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArkMultiSave", "ArkMultiSav
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MemorySignal", "MemorySignal", "{D89C07FA-5E53-419B-848F-90DAE2F169EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemorySignal.Server", "MemorySignal\Server\MemorySignal.Server.csproj", "{4A814414-C077-4E3D-A10B-3EA11D042CA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemorySignal.Server", "MemorySignal\Server\MemorySignal.Server.csproj", "{4A814414-C077-4E3D-A10B-3EA11D042CA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemorySignal.Client", "MemorySignal\Client\MemorySignal.Client.csproj", "{B3A02BE9-FF0E-46E5-B3D9-5291D9BBA6A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemorySignal.Client", "MemorySignal\Client\MemorySignal.Client.csproj", "{B3A02BE9-FF0E-46E5-B3D9-5291D9BBA6A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemorySignal.Shared", "MemorySignal\Shared\MemorySignal.Shared.csproj", "{D52DB2EE-03B0-4E7D-8AC4-9F88DCC658E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemorySignal.Shared", "MemorySignal\Shared\MemorySignal.Shared.csproj", "{D52DB2EE-03B0-4E7D-8AC4-9F88DCC658E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemorySignal.Core", "MemorySignal\MemorySignal.Core\MemorySignal.Core.csproj", "{53868115-A8CF-4306-8A04-6C57BA93E1A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemorySignal.Core", "MemorySignal\MemorySignal.Core\MemorySignal.Core.csproj", "{53868115-A8CF-4306-8A04-6C57BA93E1A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemorySignal.Tests", "MemorySignal\MemorySignal.Tests\MemorySignal.Tests.csproj", "{243FE9BC-E114-494A-83BA-F935E51E3BE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemorySignal.Tests", "MemorySignal\MemorySignal.Tests\MemorySignal.Tests.csproj", "{243FE9BC-E114-494A-83BA-F935E51E3BE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemorySignal.Admin", "MemorySignal\MemorySignal.Admin\MemorySignal.Admin.csproj", "{B4B3D090-CA47-42CD-856D-9F89D0C87A59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemorySignal.Admin", "MemorySignal\MemorySignal.Admin\MemorySignal.Admin\MemorySignal.Admin.csproj", "{EA2FBB24-31DB-4FA8-B5D0-9848E0373945}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +49,10 @@ Global
 		{243FE9BC-E114-494A-83BA-F935E51E3BE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{243FE9BC-E114-494A-83BA-F935E51E3BE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{243FE9BC-E114-494A-83BA-F935E51E3BE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4B3D090-CA47-42CD-856D-9F89D0C87A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4B3D090-CA47-42CD-856D-9F89D0C87A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4B3D090-CA47-42CD-856D-9F89D0C87A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4B3D090-CA47-42CD-856D-9F89D0C87A59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA2FBB24-31DB-4FA8-B5D0-9848E0373945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2FBB24-31DB-4FA8-B5D0-9848E0373945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2FBB24-31DB-4FA8-B5D0-9848E0373945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2FBB24-31DB-4FA8-B5D0-9848E0373945}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,7 +63,7 @@ Global
 		{D52DB2EE-03B0-4E7D-8AC4-9F88DCC658E9} = {D89C07FA-5E53-419B-848F-90DAE2F169EF}
 		{53868115-A8CF-4306-8A04-6C57BA93E1A5} = {D89C07FA-5E53-419B-848F-90DAE2F169EF}
 		{243FE9BC-E114-494A-83BA-F935E51E3BE2} = {D89C07FA-5E53-419B-848F-90DAE2F169EF}
-		{B4B3D090-CA47-42CD-856D-9F89D0C87A59} = {D89C07FA-5E53-419B-848F-90DAE2F169EF}
+		{EA2FBB24-31DB-4FA8-B5D0-9848E0373945} = {D89C07FA-5E53-419B-848F-90DAE2F169EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DE2C6931-AE47-4769-B6F6-93060173A1DE}
