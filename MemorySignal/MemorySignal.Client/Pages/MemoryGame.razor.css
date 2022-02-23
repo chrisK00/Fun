@@ -1,0 +1,47 @@
+﻿.memory-card {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform .5s;
+    padding: 0rem;
+    margin: 0.2rem 0.1rem;
+}
+
+.list-group-item {
+    font-size: 1.25rem;
+}
+
+@media (min-width:375px) {
+    .memory-card {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+@media (min-width:425px) {
+    .memory-card {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+@media (min-width:768px) {
+    .memory-card {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (min-width:1024px) {
+    .memory-card {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (min-width:1400px) {
+    .memory-card {
+        width: 200px;
+        height: 200px;
+    }
+}

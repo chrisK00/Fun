@@ -40,6 +40,10 @@ if (app.Environment.IsProduction())
     app.UseCors(builder => builder.WithOrigins(app.Configuration["ClientUrl"], app.Configuration["AdminUrl"]).AllowAnyHeader().AllowAnyMethod());
     app.MapFallback(async req => await req.Response.WriteAsJsonAsync("This link appears to be broken or the site is down for maintenance"));
 }
+else
+{
+    app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+}
 
 app.MapControllers();
 app.MapHub<MemoryGameHub>("/" + IMemoryGameHub.Uri);

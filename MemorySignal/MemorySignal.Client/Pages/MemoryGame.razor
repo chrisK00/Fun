@@ -37,8 +37,8 @@
                 @foreach (var card in _cards)
                 {
                     <img class="col-2 memory-card" @onclick="async () => await Flip(card)"
-                         style=@(!card.IsFlipped ? "transform: rotateY(180deg);" : "")
-                         src="@(!card.IsFlipped ? "not-flipped.png" : card.ImageUrl)" />
+                         style=@(!card.IsFlipped ? "transform: rotateY(180deg);" : "" )
+                         src="@(!card.IsFlipped ? " not-flipped.png" : card.ImageUrl)" />
                 }
             </div>
         </div>
@@ -60,12 +60,19 @@
     [Parameter] public int CardCollectionId { get; set; }
 
     private string _winMessage;
-    private ICollection<MemoryCardResponse> _cardsFlipped = new List<MemoryCardResponse>();
+    private ICollection<MemoryCardResponse>
+        _cardsFlipped = new List<MemoryCardResponse>
+            ();
     private bool _flipping;
     private HubConnection _connection;
     private PlayerResponse _playersTurn;
-    private ICollection<PlayerResponse> _players = new List<PlayerResponse>();
-    private IEnumerable<MemoryCardResponse> _cards { get; set; } = new List<MemoryCardResponse>();
+    private ICollection<PlayerResponse>
+        _players = new List<PlayerResponse>
+            ();
+    private IEnumerable<MemoryCardResponse>
+        _cards
+    { get; set; } = new List<MemoryCardResponse>
+            ();
 
     public void Reset()
     {
@@ -83,60 +90,63 @@
     {
         _connection = new HubConnectionBuilder().WithUrl(Api.Value.Url + IMemoryGameHub.Uri).Build();
 
-        _connection.On<PlayerResponse>(nameof(IMemoryGameClient.PlayerJoined), player =>
-        {
-            _players.Add(player);
-            StateHasChanged();
-        });
-
-        _connection.On<string, bool>(nameof(IMemoryGameClient.Turn), async (playerName, addPoint) =>
-        {
-            if (_cardsFlipped.Count != 2) return;
-            var player = _players.First(p => p.Name == playerName);
-
-            if (addPoint)
+        _connection.On<PlayerResponse>
+            (nameof(IMemoryGameClient.PlayerJoined), player =>
             {
-                player.Points++;
-                if (_cards.All(c => c.IsFlipped))
-                {
-                    var maxPoints = _players.Max(p => p.Points);
-                    var winners = _players.Where(p => p.Points == maxPoints).ToArray();
+                _players.Add(player);
+                StateHasChanged();
+            });
 
-                    if (winners.Count() > 1) _winMessage = "It's a tie!";
-                    else
+        _connection.On<string, bool>
+            (nameof(IMemoryGameClient.Turn), async (playerName, addPoint) =>
+            {
+                if (_cardsFlipped.Count != 2) return;
+                var player = _players.First(p => p.Name == playerName);
+
+                if (addPoint)
+                {
+                    player.Points++;
+                    if (_cards.All(c => c.IsFlipped))
                     {
-                        var winner = winners.First();
-                        _winMessage = winner.Name == PlayerName ? "You won!" : $"{winner.Name} won the game!";
+                        var maxPoints = _players.Max(p => p.Points);
+                        var winners = _players.Where(p => p.Points == maxPoints).ToArray();
+
+                        if (winners.Count() > 1) _winMessage = "It's a tie!";
+                        else
+                        {
+                            var winner = winners.First();
+                            _winMessage = winner.Name == PlayerName ? "You won!" : $"{winner.Name} won the game!";
+                        }
                     }
                 }
-            }
-            else
+                else
+                {
+                    await Task.Delay(1100);
+                    foreach (var c in _cardsFlipped) c.IsFlipped = false;
+                    _playersTurn = player;
+                }
+
+                _cardsFlipped.Clear();
+                StateHasChanged();
+            });
+
+        _connection.On<string>
+            (nameof(IMemoryGameClient.Flipping), id =>
             {
-                await Task.Delay(1200);
-                foreach (var c in _cardsFlipped) c.IsFlipped = false;
-                _playersTurn = player;
-            }
-
-            _cardsFlipped.Clear();
-            StateHasChanged();
-        });
-
-        _connection.On<string>(nameof(IMemoryGameClient.Flipping), id =>
-        {
-            var card = _cards.First(c => c.TempId == id);
-            card.IsFlipped = true;
-            _flipping = false;
-            _cardsFlipped.Add(card);
-            StateHasChanged();
-        });
+                var card = _cards.First(c => c.TempId == id);
+                card.IsFlipped = true;
+                _flipping = false;
+                _cardsFlipped.Add(card);
+                StateHasChanged();
+            });
 
         _connection.On<IEnumerable<MemoryCardResponse>, PlayerResponse>(nameof(IMemoryGameClient.Start), (cards, player) =>
         {
             if (_playersTurn != null) Reset();
 
-            _playersTurn = player;
-            _cards = cards;
-            StateHasChanged();
+          _playersTurn = player;
+          _cards = cards;
+         StateHasChanged();
         });
 
         _connection.On<string>(nameof(IMemoryGameClient.PlayerLeft), playerName =>
@@ -188,53 +198,3 @@
         if (_connection is not null) await _connection.DisposeAsync();
     }
 }
-
-<style>
-    .memory-card {
-        width: 100px;
-        height: 100px;
-        cursor: pointer;
-        transition: transform .5s;
-        padding: 0rem;
-        margin: 0.2rem 0.1rem;
-    }
-
-    .list-group-item {
-        font-size: 1.25rem;
-    }
-
-    @@media (min-width:375px) {
-        .memory-card {
-            width: 110px;
-            height: 110px;
-        }
-    }
-
-    @@media (min-width:425px) {
-        .memory-card {
-            width: 130px;
-            height: 130px;
-        }
-    }
-
-    @@media (min-width:768px) {
-        .memory-card {
-            width: 150px;
-            height: 150px;
-        }
-    }
-
-    @@media (min-width:1024px) {
-        .memory-card {
-            width: 180px;
-            height: 180px;
-        }
-    }
-
-    @@media (min-width:1400px) {
-        .memory-card {
-            width: 200px;
-            height: 200px;
-        }
-    }
-</style>
