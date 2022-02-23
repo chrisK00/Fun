@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MemorySignal.Core\MemorySignal.Core.csproj" />
+    <ProjectReference Include="..\MemorySignal.Shared\MemorySignal.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
