@@ -1,4 +1,6 @@
-﻿namespace MemorySignal.Client.Pages;
+﻿using Microsoft.AspNetCore.SignalR;
+
+namespace MemorySignal.Client.Pages;
 
 public partial class MemoryGame : IAsyncDisposable
 {
@@ -11,6 +13,7 @@ public partial class MemoryGame : IAsyncDisposable
     private IEnumerable<MemoryCardResponse> _cards { get; set; } = new List<MemoryCardResponse>();
 
     public string PlayerName { get; set; }
+    public string NameModalMessage { get; set; }
     [Parameter] public string GameId { get; set; }
     [Parameter] public int CardCollectionId { get; set; }
     [Inject] NavigationManager Nav { get; set; }
@@ -49,7 +52,6 @@ public partial class MemoryGame : IAsyncDisposable
     private void HandleAddPoint(PlayerResponse player)
     {
         player.Points++;
-        // are all cards flipped
         if (_cards.Any(c => !c.IsFlipped)) return;
 
         var maxPoints = _players.Max(p => p.Points);
@@ -108,11 +110,13 @@ public partial class MemoryGame : IAsyncDisposable
             StateHasChanged();
         });
 
-        _connection.On<string>(nameof(IMemoryGameClient.PlayerLeft), playerName =>
+        _connection.On<string, string>(nameof(IMemoryGameClient.PlayerLeft), (playerName, playersTurnName) =>
         {
             if (_playersTurn.Name == playerName)
             {
+                foreach (var c in _cardsFlipped) c.IsFlipped = false;
                 _cardsFlipped.Clear();
+                _playersTurn = _players.First(p => p.Name == playersTurnName);
             }
 
             _players.Remove(_players.First(p => p.Name == playerName));
@@ -136,6 +140,14 @@ public partial class MemoryGame : IAsyncDisposable
 
     private async Task JoinGame()
     {
-        _players = await _connection.InvokeAsync<ICollection<PlayerResponse>>(nameof(IMemoryGameHub.Join), GameId, CardCollectionId, PlayerName);
+        try
+        {
+            _players = await _connection.InvokeAsync<ICollection<PlayerResponse>>(nameof(IMemoryGameHub.Join), GameId, CardCollectionId, PlayerName);
+        }
+        catch (HubException ex)
+        {
+            NameModalMessage = "The game has already started or the username is taken";
+            PlayerName = null;
+        }
     }
 }

@@ -3,7 +3,7 @@
 
 @if (string.IsNullOrWhiteSpace(PlayerName))
 {
-    <NameModal OnNameSubmit="async name => await OnNameSubmit(name)" />
+    <NameModal Message="@NameModalMessage" OnNameSubmit="async name => await OnNameSubmit(name)" />
 }
 
 @if (_playersTurn == null)

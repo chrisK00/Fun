@@ -72,6 +72,6 @@ public class MemoryGameHub : Hub<IMemoryGameClient>, IMemoryGameHub
 
         var player = game.Players.First(p => p.Id == _connectionId);
         game.RemovePlayer(player);
-        await Clients.Clients(game.Players.Ids()).PlayerLeft(player.Name);
+        await Clients.Clients(game.Players.Ids()).PlayerLeft(player.Name, game.PlayersTurn.Name);
     }
 }

@@ -1,13 +1,16 @@
 ﻿@inject IJSRuntime Js
+@inject NavigationManager Nav
 
 <div class="modal fade mt-5 @_modalClass" tabindex="-1" role="dialog" style="display:@_modalDisplay;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
+                <span class="text-danger">@Message</span>
                 <form class="form-group" @onsubmit="async() => await SubmitNameAsync(PlayerName)">
-                    <label for="@PlayerName">Name</label>
+                    <label for="@PlayerName">Enter a unique name</label>
                     <input id="name-input" autocomplete="on" class="form-control" type="text" @bind-value="PlayerName" min="3" />
-                    <button type="submit" class="btn btn-primary mt-1" data-dismiss="modal">Play</button>
+                    <button type="submit" class="btn btn-primary mt-2" data-dismiss="modal">Play</button>
+                    <button type="button" @onclick="@(() => Nav.NavigateTo("/"))" class="btn btn-secondary mt-2">Close</button>
                 </form>
             </div>
         </div>
@@ -16,6 +19,7 @@
 
 @code{
     [Parameter] public EventCallback<string> OnNameSubmit { get; set; }
+    [Parameter] public string Message { get; set; }
     public string PlayerName { get; set; } = Guid.NewGuid().ToString()[..4];
     private string _modalClass = "show";
     private string _modalDisplay = "block";

@@ -22,5 +22,11 @@ public interface IMemoryGameClient
     Task Start(IEnumerable<MemoryCardResponse> cards, PlayerResponse playersTurn);
 
     Task PlayerJoined(PlayerResponse player);
-    Task PlayerLeft(string playerName);
+
+    /// <summary>
+    /// The player who left and who's turn it is now
+    /// </summary>
+    /// <param name="playerName"></param>
+    /// <param name="playersTurn"></param>
+    Task PlayerLeft(string playerName, string playersTurnName);
 }
