@@ -28,7 +28,6 @@ public class CardCollectionsController : ControllerBase
         [FromServices] IAction<AddCardCollectionRequest, CardCollectionResponse> action)
     {
         var response = await action.Execute(request);
-
         if (action.HasErrors) return BadRequest(action.ErrorsFormatted);
 
         return response;

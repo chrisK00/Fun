@@ -46,7 +46,7 @@ public partial class MemoryGame : IAsyncDisposable
         if (_connection is not null) await _connection.DisposeAsync();
     }
 
-    private async Task HandleAddPoint(PlayerResponse player)
+    private void HandleAddPoint(PlayerResponse player)
     {
         player.Points++;
         // are all cards flipped
@@ -78,7 +78,7 @@ public partial class MemoryGame : IAsyncDisposable
                 if (_cardsFlipped.Count != 2) return;
                 var player = _players.First(p => p.Name == playerName);
 
-                if (addPoint) await HandleAddPoint(player);
+                if (addPoint) HandleAddPoint(player);
                 else
                 {
                     await Task.Delay(1100);
