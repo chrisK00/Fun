@@ -1,0 +1,62 @@
+﻿@page "/meal-split"
+@page "/split-meal"
+
+<div class="container">
+    <EditForm class="col-5" Model="_model" OnValidSubmit="OnSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label class="form-label">Enter gram</label>
+            <InputNumber class="form-control" @bind-Value="_model.Gram" />
+        </div>
+
+        <div class="form-group mt-2">
+            <label class="form-label">Enter portions</label>
+            <InputNumber class="form-control" @bind-Value="_model.Portions" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Calc</button>
+    </EditForm>
+
+    @if (_portionGram.Any())
+    {
+        <div class="heading-6 text-muted mt-3">One portion is @(_onePortion)g</div>
+        <table class="table table-secondary table-hover table-sm w-25">
+            <thead>
+                <tr>
+                    <th>Portion</th>
+                    <th>Gram</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var (portion, gram) in _portionGram)
+                {
+                    <tr>
+                        <td>@portion</td>
+                        <td>@gram</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code{
+    private MealSplitRequest _model = new();
+
+    private Dictionary<int, int> _portionGram = new();
+    private int _onePortion;
+
+    public void OnSubmit()
+    {
+        _portionGram.Clear();
+        _onePortion = (int)Math.Round(_model.Gram / (double)_model.Portions);
+
+        for (int portion = 1; portion < _model.Portions; portion++)
+        {
+            var weightGram = _model.Gram - (_onePortion * portion);
+            _portionGram.Add(portion, weightGram);
+        }
+    }
+}

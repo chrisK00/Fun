@@ -6,9 +6,9 @@
 <PageTitle>Home</PageTitle>
 
 <div class="container">
-    <div class="row">
-        @if (_cardCollections != null)
-        {
+    @if (_cardCollections != null)
+    {
+        <div class="row">
             @foreach (var c in _cardCollections)
             {
                 <div class="card bg-dark text-light col-md-3 col-5 m-2">
@@ -20,12 +20,13 @@
                     </div>
                 </div>
             }
-        }
-        else
-        {
-            <h6 class="display-6">Loading Card Collections...</h6>
-        }
-    </div>
+        </div>
+
+    }
+    else
+    {
+        <h6 class="display-6">Loading Card Collections...</h6>
+    }
 </div>
 
 @code{
