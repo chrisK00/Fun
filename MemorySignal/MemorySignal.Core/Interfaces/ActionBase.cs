@@ -16,9 +16,7 @@ public abstract class ActionBase<TIn, TOut> : IAction<TIn, TOut>
             var sb = new StringBuilder();
             foreach (var error in Errors)
             {
-                sb.Append(error.MemberNames.FirstOrDefault())
-                    .Append(' ')
-                    .AppendLine(error.ErrorMessage);
+                    sb.AppendLine(error.ErrorMessage);
             }
 
             return sb.ToString();
