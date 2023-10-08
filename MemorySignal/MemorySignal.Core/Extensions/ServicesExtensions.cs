@@ -7,8 +7,10 @@ public static class ServicesExtensions
 {
     public static void AddCoreServices(this IServiceCollection services, IConfiguration config, bool production)
     {
-        var connectionString = production ? ParseHerokuConnectionString(config["DATABASE_URL"]) : config["DefaultConnection"];
-        services.AddDbContext<DataContext>(opt => opt.UseNpgsql(connectionString, npgsqlOpt => npgsqlOpt.EnableRetryOnFailure()));
+        //var connectionString = production ? ParseHerokuConnectionString(config["DATABASE_URL"]) : config["DefaultConnection"];
+        //services.AddDbContext<DataContext>(opt => opt.UseNpgsql(connectionString, npgsqlOpt => npgsqlOpt.EnableRetryOnFailure()));
+        var connectionString = "Data Source=App.db";
+        services.AddDbContext<DataContext>(opt => opt.UseSqlite(connectionString));
         services.Configure<ImageApiOptions>(config.GetSection(nameof(ImageApiOptions)));
         services.AddAutoScanning();
     }
