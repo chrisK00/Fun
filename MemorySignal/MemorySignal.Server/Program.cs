@@ -2,6 +2,7 @@ using MemorySignal.Server.Extensions;
 using MemorySignal.Server.Filters;
 using MemorySignal.Server.Hubs;
 using MemorySignal.Shared.Interfaces;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -17,11 +18,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(Log.Logger);
+builder.Services.Configure<ForwardedHeadersOptions>(options => options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto);
+
+// TODO client should use this to contact open endpoints. NVM mb? can just use cors lol
+// TODO create/update operations should use config.json username and pass
 builder.Services.AddScoped<TokenFilter>();
+
 builder.Services.AddCoreServices(builder.Configuration, builder.Environment.IsProduction());
 
 var app = builder.Build();
 app.Services.SeedDatabase();
+
+app.UseForwardedHeaders();
 
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -29,10 +37,10 @@ app.UseSwaggerUI();
 if (app.Environment.IsProduction())
 {
     // TODO: Add global exception handler
-    app.UseHsts();
+    //app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseRouting();
 
 if (app.Environment.IsProduction())
