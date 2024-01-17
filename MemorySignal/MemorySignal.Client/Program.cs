@@ -1,5 +1,4 @@
 using MemorySignal.Client;
-using MemorySignal.Client.Options;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -7,6 +6,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+// todo apiurl through nginx for ssl.
 string apiUrl = builder.HostEnvironment.IsProduction() ? builder.Configuration["ApiUrl"] : builder.Configuration["LocalClient"];
 
 builder.Services.Configure<ApiOptions>(opt => opt.Url = apiUrl);

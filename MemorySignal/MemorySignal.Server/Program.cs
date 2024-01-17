@@ -47,6 +47,7 @@ app.UseRouting();
 
 if (app.Environment.IsProduction())
 {
+    // todo client url nginx https
     app.UseCors(builder => builder.WithOrigins(app.Configuration["ClientUrl"], app.Configuration["AdminUrl"]).AllowAnyHeader().AllowAnyMethod());
     app.MapFallback(async req => await req.Response.WriteAsJsonAsync("This link appears to be broken or the site is down for maintenance"));
 }
