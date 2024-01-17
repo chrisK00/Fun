@@ -47,7 +47,7 @@ app.UseRouting();
 
 app.UseCors(builder =>
 {
-    builder.WithOrigins("http://209.38.252.145:5020/", "http://209.38.252.145", "http://209.38.252.145:5020"/*, "http://localhost:5020"*/)
+    builder.WithOrigins("http://209.38.252.145:5020/", /*"http://209.38.252.145",*/ "http://209.38.252.145:5020")
            .AllowAnyHeader()
            .AllowAnyMethod();
 });
