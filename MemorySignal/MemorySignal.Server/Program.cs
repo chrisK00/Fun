@@ -47,7 +47,7 @@ if (app.Environment.IsProduction())
 }
 else
 {
-    //app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+    app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 }
 
 app.MapControllers();

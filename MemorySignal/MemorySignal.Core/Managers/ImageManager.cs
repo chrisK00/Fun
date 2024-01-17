@@ -5,7 +5,6 @@ using Microsoft.Extensions.Options;
 
 namespace MemorySignal.Core.Managers;
 
-// TODO might need to replace with local opt
 public class ImageManager : IImageManager
 {
     private readonly ImageApiOptions _apiOptions;
