@@ -22,8 +22,6 @@ builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(Log.Logger);
 builder.Services.Configure<ForwardedHeadersOptions>(options => options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto);
 
-
-
 // TODO client should use this to contact open endpoints. alt just use cors lol
 // TODO create/update operations should use config.json username and pass
 builder.Services.AddScoped<TokenFilter>();
