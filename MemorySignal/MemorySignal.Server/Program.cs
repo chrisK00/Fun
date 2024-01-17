@@ -45,22 +45,21 @@ if (app.Environment.IsProduction())
 //app.UseHttpsRedirection();
 app.UseRouting();
 
-app.UseCors(builder =>
+if (app.Environment.IsProduction())
 {
-    builder.WithOrigins("http://209.38.252.145:5020/")
-           .AllowAnyHeader()
-           .AllowAnyMethod();
-});
-//if (app.Environment.IsProduction())
-//{
-//    // todo client url nginx https
-//    app.UseCors(builder => builder.WithOrigins(app.Configuration["ClientUrl"], app.Configuration["AdminUrl"]).AllowAnyHeader().AllowAnyMethod());
-//    app.MapFallback(async req => await req.Response.WriteAsJsonAsync("This link appears to be broken or the site is down for maintenance"));
-//}
-//else
-//{
-//    app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-//}
+    app.UseCors(builder =>
+    {
+        builder.WithOrigins(app.Configuration["ClientUrl"], app.Configuration["AdminUrl"])
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+
+    app.MapFallback(async req => await req.Response.WriteAsJsonAsync("This link appears to be broken or the site is down for maintenance"));
+}
+else
+{
+    app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+}
 
 app.MapControllers();
 app.MapHub<MemoryGameHub>("/" + IMemoryGameHub.Uri);
