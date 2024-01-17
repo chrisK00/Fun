@@ -40,6 +40,6 @@
     public void PlayGame(int cardsId)
     {
         var gameId = Guid.NewGuid().ToString()[..8];
-        Nav.NavigateTo($"/memory-game/{gameId}/{cardsId}");
+        Nav.NavigateTo($"/memory/memory-game/{gameId}/{cardsId}");
     }
 }
