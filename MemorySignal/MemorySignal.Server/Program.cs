@@ -10,6 +10,8 @@ using Serilog;
 Log.Logger.Configure();
 
 var builder = WebApplication.CreateBuilder(args);
+Log.Logger.Warning("Hello");
+Log.Logger.Warning(builder.Configuration["ClientUrl"]);
 
 builder.Services.AddControllers();
 builder.Services.AddSignalR();
@@ -20,7 +22,9 @@ builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(Log.Logger);
 builder.Services.Configure<ForwardedHeadersOptions>(options => options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto);
 
-// TODO client should use this to contact open endpoints. NVM mb? can just use cors lol
+
+
+// TODO client should use this to contact open endpoints. alt just use cors lol
 // TODO create/update operations should use config.json username and pass
 builder.Services.AddScoped<TokenFilter>();
 
