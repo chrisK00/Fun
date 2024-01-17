@@ -36,13 +36,6 @@ app.UseForwardedHeaders();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-if (app.Environment.IsProduction())
-{
-    // TODO: Add global exception handler
-    //app.UseHsts();
-}
-
-//app.UseHttpsRedirection();
 app.UseRouting();
 
 if (app.Environment.IsProduction())
@@ -62,6 +55,6 @@ else
 }
 
 app.MapControllers();
-app.MapHub<MemoryGameHub>("/" + IMemoryGameHub.Uri);
+app.MapHub<MemoryGameHub>($"/{IMemoryGameHub.Uri}");
 
 app.Run();
