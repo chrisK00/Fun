@@ -33,7 +33,7 @@
                 {
                     <img class="col-2 memory-card" @onclick="async () => await Flip(card)"
                          style=@(!card.IsFlipped ? "transform: rotateY(180deg);" : "" )
-                         src="@(!card.IsFlipped ? " not-flipped.png" : card.ImageUrl)" />
+                         src="@(!card.IsFlipped ? "http://209.38.252.145/memory/not-flipped.png" : card.ImageUrl)" />
                 }
             </div>
         </div>
