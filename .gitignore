@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 MemorySignal/MemorySignal.Admin/wwwroot/appsettings.json
+/MemorySignal/MemorySignal.Server/App.db

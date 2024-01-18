@@ -21,15 +21,16 @@ public class CardCollectionsController : ControllerBase
         return Ok(await _cardCollectionQueries.GetAll());
     }
 
-    [ApiExplorerSettings(IgnoreApi = true)]
-    [ServiceFilter(typeof(TokenFilter))]
-    [HttpPost]
-    public async Task<ActionResult<CardCollectionResponse>> AddCardCollection([FromForm] AddCardCollectionRequest request,
-        [FromServices] IAction<AddCardCollectionRequest, CardCollectionResponse> action)
-    {
-        var response = await action.Execute(request);
-        if (action.HasErrors) return BadRequest(action.ErrorsFormatted);
+    // temp disable
+    //[ApiExplorerSettings(IgnoreApi = true)]
+    //[ServiceFilter(typeof(TokenFilter))]
+    //[HttpPost]
+    //public async Task<ActionResult<CardCollectionResponse>> AddCardCollection([FromForm] AddCardCollectionRequest request,
+    //    [FromServices] IAction<AddCardCollectionRequest, CardCollectionResponse> action)
+    //{
+    //    var response = await action.Execute(request);
+    //    if (action.HasErrors) return BadRequest(action.ErrorsFormatted);
 
-        return response;
-    }
+    //    return response;
+    //}
 }

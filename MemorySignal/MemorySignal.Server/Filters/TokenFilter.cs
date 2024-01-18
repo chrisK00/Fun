@@ -18,7 +18,9 @@ public class TokenFilter : IActionFilter
     public void OnActionExecuting(ActionExecutingContext context)
     {
         const string key = "Token";
-        if (!context.HttpContext.Request.Headers.Any(h => h.Key == key) || context.HttpContext.Request.Headers[key] != _config[key])
+        var tokenValue = _config[key];
+
+        if (string.IsNullOrWhiteSpace(tokenValue) || !context.HttpContext.Request.Headers.Any(h => h.Key == key) || context.HttpContext.Request.Headers[key] != tokenValue)
         {
             context.Result = new UnauthorizedObjectResult("Unauthorized");
         }
