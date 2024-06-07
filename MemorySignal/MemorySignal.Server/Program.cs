@@ -34,6 +34,7 @@ app.UseSwaggerUI();
 
 app.UseRouting();
 
+app.UseHttpsRedirection();
 if (app.Environment.IsProduction())
 {
     app.UseCors(builder =>
@@ -53,4 +54,5 @@ else
 app.MapControllers();
 app.MapHub<MemoryGameHub>($"/{IMemoryGameHub.Uri}");
 
-app.Run("http://localhost:5190");
+//app.Run("http://localhost:5190");
+app.Run();
