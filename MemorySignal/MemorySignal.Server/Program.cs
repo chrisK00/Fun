@@ -34,9 +34,9 @@ app.UseSwaggerUI();
 
 app.UseRouting();
 
-app.UseHttpsRedirection();
 if (app.Environment.IsProduction())
 {
+    app.UseHttpsRedirection();
     app.UseCors(builder =>
     {
         builder.WithOrigins(app.Configuration["ClientUrl"], app.Configuration["AdminUrl"])

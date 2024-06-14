@@ -37,18 +37,18 @@ public static class DataSeed
 
         var pokemonCards = new List<Card>()
     {
-        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/uhtzu4tzijqcfwm4choi.png","uhtzu4tzijqcfwm4choi"),
-        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/hntpysfbjy53vsqnr9qh.png","hntpysfbjy53vsqnr9qh"),
-        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/xhambqh5orywvmxrpckk.png","xhambqh5orywvmxrpckk"),
-        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/u5tr5ffoqmhqoxyu3zi2.png","u5tr5ffoqmhqoxyu3zi2"),
-        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/rhqokgjrxrkjxrbmo4gp.jpg","rhqokgjrxrkjxrbmo4gp"),
+        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1705936472/Cards/akin-cakiner-9cIkK-hLD9k-unsplash_utdwzi.jpg","akin-cakiner-9cIkK-hLD9k-unsplash_utdwzi"),
         new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/i1pi3ukwmewzi0owsglf.png","i1pi3ukwmewzi0owsglf"),
         new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/eztiw8d8mko01iip6osa.png","eztiw8d8mko01iip6osa"),
         new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1705936471/Cards/toys-5354057_640_jecaww.jpg","toys-5354057_640_jecaww"),
         new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1705936471/Cards/pikachu-5527377_640_ribvux.jpg","pikachu-5527377_640_ribvux"),
         new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1705936471/Cards/squirtle-8012702_640_yp7uvb.jpg","squirtle-8012702_640_yp7uvb"),
+        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/xhambqh5orywvmxrpckk.png","xhambqh5orywvmxrpckk"),
         new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1705936471/Cards/ball-1556117_640_kfcbet.jpg","ball-1556117_640_kfcbet"),
-        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1705936472/Cards/akin-cakiner-9cIkK-hLD9k-unsplash_utdwzi.jpg","akin-cakiner-9cIkK-hLD9k-unsplash_utdwzi"),
+        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/uhtzu4tzijqcfwm4choi.png","uhtzu4tzijqcfwm4choi"),
+        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/hntpysfbjy53vsqnr9qh.png","hntpysfbjy53vsqnr9qh"),
+        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/u5tr5ffoqmhqoxyu3zi2.png","u5tr5ffoqmhqoxyu3zi2"),
+        new("https://res.cloudinary.com/dbb9v8ne8/image/upload/v1645562527/Cards/rhqokgjrxrkjxrbmo4gp.jpg","rhqokgjrxrkjxrbmo4gp"),
     };
 
         var smallAnimalsCardCollection = new CardCollection("Small Animals", smallAnimalCards);
