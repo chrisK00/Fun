@@ -54,5 +54,5 @@ else
 app.MapControllers();
 app.MapHub<MemoryGameHub>($"/{IMemoryGameHub.Uri}");
 
-app.Run("http://localhost:5190");
-//app.Run();
+//app.Run("http://localhost:5190");
+app.Run();
