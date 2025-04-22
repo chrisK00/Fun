@@ -37,6 +37,12 @@
                 }
             </div>
         </div>
+
+        @* Preload card images invisibly *@
+        @foreach (var card in _cards)
+        {
+            <img src="@card.ImageUrl" width="1" height="1" style="visibility:hidden; position:absolute;" />
+        }
     }
 
     <div class="col-xl-3 mt-xl-0 mt-1">
