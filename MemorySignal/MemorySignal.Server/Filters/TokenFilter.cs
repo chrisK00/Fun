@@ -30,7 +30,8 @@ public class TokenFilter : IActionFilter
 
         if (string.IsNullOrWhiteSpace(tokenValue) || !context.HttpContext.Request.Headers.Any(h => h.Key == _key) || context.HttpContext.Request.Headers[_key] != tokenValue)
         {
-            context.Result = new UnauthorizedObjectResult("Unauthorized");
+            //context.Result = new UnauthorizedObjectResult("Unauthorized");
+            context.Result = new UnauthorizedObjectResult($"{tokenValue} {context.HttpContext.Request.Headers[_key]}");
         }
     }
 }
