@@ -37,7 +37,7 @@ public class CardCollectionsController : ControllerBase
     }
 
     [ApiExplorerSettings(IgnoreApi = true)]
-    [ServiceFilter(typeof(TokenFilter))]
+    //[ServiceFilter(typeof(TokenFilter))]
     [HttpDelete("{id}")]
     public async Task<ActionResult<RemoveCardCollectionResponse>> RemoveCardCollection(int id,
         [FromServices] IAction<RemoveCardCollectionRequest, RemoveCardCollectionResponse> action)
