@@ -47,7 +47,7 @@
 </style>
 
 @code{
-    private string Token = string.Empty;
+    public string Token { get; set; } = string.Empty;
     private string _message = string.Empty;
     private bool _showAddCardCollection = true;
     private List<CardCollectionResponse> _cardCollections = new();
