@@ -28,10 +28,11 @@ public class TokenFilter : IActionFilter
 
         var tokenValue = _config[_key];
 
-        if (string.IsNullOrWhiteSpace(tokenValue) || !context.HttpContext.Request.Headers.Any(h => h.Key == _key) || context.HttpContext.Request.Headers[_key] != tokenValue)
+        if (string.IsNullOrWhiteSpace(tokenValue) 
+            || !context.HttpContext.Request.Headers.Any(h => h.Key == _key) 
+            || context.HttpContext.Request.Headers[_key].First().Trim() != tokenValue.Trim())
         {
-            //context.Result = new UnauthorizedObjectResult("Unauthorized");
-            context.Result = new UnauthorizedObjectResult($"{tokenValue} {context.HttpContext.Request.Headers[_key]}");
+            context.Result = new UnauthorizedObjectResult($"Key: {context.HttpContext.Request.Headers[_key]}");
         }
     }
 }
