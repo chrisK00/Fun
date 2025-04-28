@@ -32,7 +32,7 @@ public class TokenFilter : IActionFilter
             || !context.HttpContext.Request.Headers.Any(h => h.Key == _key) 
             || context.HttpContext.Request.Headers[_key].First().Trim() != tokenValue.Trim())
         {
-            context.Result = new UnauthorizedObjectResult($"Key: {context.HttpContext.Request.Headers[_key]}");
+            context.Result = new UnauthorizedObjectResult($"Key: {context.HttpContext.Request.Headers[_key]} {context.HttpContext.Request.Headers[_key].First().Trim()}");
         }
     }
 }
