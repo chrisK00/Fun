@@ -29,7 +29,7 @@ public class TokenFilter : IActionFilter
         var tokenValue = _config[_key];
 
         if (string.IsNullOrWhiteSpace(tokenValue) 
-            || !context.HttpContext.Request.Headers.Any(h => h.Key == _key) 
+            || !context.HttpContext.Request.Headers.ContainsKey(_key) 
             || context.HttpContext.Request.Headers[_key]!= tokenValue)
         {
             context.Result = new UnauthorizedObjectResult("Unauthorized");
