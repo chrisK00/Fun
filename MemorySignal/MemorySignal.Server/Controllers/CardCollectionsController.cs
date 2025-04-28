@@ -21,16 +21,33 @@ public class CardCollectionsController : ControllerBase
         return Ok(await _cardCollectionQueries.GetAll());
     }
 
-    // temp disable
-    //[ApiExplorerSettings(IgnoreApi = true)]
-    //[ServiceFilter(typeof(TokenFilter))]
-    //[HttpPost]
-    //public async Task<ActionResult<CardCollectionResponse>> AddCardCollection([FromForm] AddCardCollectionRequest request,
-    //    [FromServices] IAction<AddCardCollectionRequest, CardCollectionResponse> action)
-    //{
-    //    var response = await action.Execute(request);
-    //    if (action.HasErrors) return BadRequest(action.ErrorsFormatted);
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [ServiceFilter(typeof(TokenFilter))]
+    [HttpPost]
+    public async Task<ActionResult<CardCollectionResponse>> AddCardCollection([FromForm] AddCardCollectionRequest request,
+        [FromServices] IAction<AddCardCollectionRequest, CardCollectionResponse> action)
+    {
+        var response = await action.Execute(request);
+        if (action.HasErrors)
+        {
+            return BadRequest(action.ErrorsFormatted);
+        }
 
-    //    return response;
-    //}
+        return response;
+    }
+
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [ServiceFilter(typeof(TokenFilter))]
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<RemoveCardCollectionResponse>> RemoveCardCollection(int id,
+        [FromServices] IAction<RemoveCardCollectionRequest, RemoveCardCollectionResponse> action)
+    {
+        var response = await action.Execute(new RemoveCardCollectionRequest(id));
+        if (action.HasErrors)
+        {
+            return BadRequest(action.ErrorsFormatted);
+        }
+
+        return response;
+    }
 }

@@ -4,7 +4,6 @@
 
 <div class="container col-6 m-2">
     <h5>@_message</h5>
-
     <EditForm Model="_model" OnValidSubmit="Submit">
         <DataAnnotationsValidator />
         <ValidationSummary />
@@ -28,8 +27,9 @@
 
 @code{
     [Parameter] public EventCallback<CardCollectionResponse> OnAdd { get; set; }
+    [Parameter] public string Token { get; set; } = string.Empty;
     private AddCardCollectionRequest _model = new();
-    private string _message = "";
+    private string _message = string.Empty;
     private IReadOnlyCollection<IBrowserFile> _files = new List<IBrowserFile>();
 
     private async Task Submit()
@@ -66,11 +66,20 @@
 
     private async Task SendRequestAsync(MultipartFormDataContent formData)
     {
-        var response = await Client.PostAsync("cardcollections", formData);
+        try
+        {
+            Client.AddAuthHeaders(Token);
 
-        var cardCollection = await response.Content.ReadFromJsonAsync<CardCollectionResponse>();
-        Reset();
-        await OnAdd.InvokeAsync(cardCollection);
+            var response = await Client.PostAsync("cardcollections", formData);
+            var cardCollection = await response.Content.ReadFromJsonAsync<CardCollectionResponse>();
+            Reset();
+            await OnAdd.InvokeAsync(cardCollection);
+        }
+        finally
+        {
+            Client.RemoveAuthHeaders();
+        }
+
     }
 
     private void Reset()

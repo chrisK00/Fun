@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject IConfiguration Config
+@inject HttpClient Client
 
 <PageTitle>Index</PageTitle>
 
@@ -10,9 +11,13 @@
 
 @if (_showAddCardCollection)
 {
-    <AddCardCollectionComponent OnAdd="CollectionAdded" />
+    <AddCardCollectionComponent Value="Token" OnAdd="CollectionAdded" />
 }
 
+<label class="form-label m-1">
+    Password
+    <input class="form-control" type="password" @bind="Token" @bind:event="oninput" />
+</label>
 <div class="row m-2">
     @foreach (var collection in _cardCollections)
     {
@@ -27,7 +32,7 @@
                         </div>
                     </div>
                     <div class="card-footer col-4">
-                        <button class="btn btn-lg btn-danger">X</button>
+                        <button class="btn btn-lg btn-danger" @onclick="() => Delete(collection.Id)">X</button>
                     </div>
                 </div>
             </div>
@@ -42,7 +47,8 @@
 </style>
 
 @code{
-    private string _message = "";
+    private string Token = string.Empty;
+    private string _message = string.Empty;
     private bool _showAddCardCollection = true;
     private List<CardCollectionResponse> _cardCollections = new();
 
@@ -51,6 +57,21 @@
         _cardCollections.Add(collection);
         _showAddCardCollection = false;
         await PushMessage($"created {collection.Name}");
+    }
+
+    private async Task Delete(int id)
+    {
+        try
+        {
+            Client.AddAuthHeaders(Token);
+
+            var response = await Client.DeleteAsync($"cardcollections/{id}");
+            var cardCollectionResponse = await response.Content.ReadFromJsonAsync<RemoveCardCollectionResponse>();
+        }
+        finally
+        {
+            Client.RemoveAuthHeaders();
+        }
     }
 
     private async Task PushMessage(string message)
