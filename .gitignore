@@ -9,7 +9,9 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+App.db
+App.db-shm
+App.db-wal
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -361,5 +363,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-MemorySignal/MemorySignal.Admin/wwwroot/appsettings.json
+# MemorySignal/MemorySignal.Admin/wwwroot/appsettings.json
 /MemorySignal/MemorySignal.Server/App.db
